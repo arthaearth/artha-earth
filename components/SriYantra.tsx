@@ -26,9 +26,9 @@ const TRIANGLES: [number, number, number, number][] = [
 // Робоча система: координати зображення 1254×1254, центр янтри (CX, CY).
 const CX = 626;
 const CY = 608;
-const R1 = 190; // коло, що описує трикутники
-const R2 = 247; // кінчики 8 пелюсток = основа 16 пелюсток
-const R3 = 292; // кінчики 16 пелюсток
+const R1 = 190; // коло, що описує трикутники = основа 8 пелюсток
+const R2 = 243; // кінчики 8 пелюсток = основа 16 пелюсток
+const R3 = 312; // кінчики 16 пелюсток
 const S = R1 / 100;
 
 const f = (n: number) => n.toFixed(2);
@@ -52,8 +52,8 @@ function petalPath(a: number, w: number, r0: number, r1: number) {
   const by = r0 * Math.sin(w);
   const L = r1 - bx;
   // два дзеркальні вигини: опуклий біля основи, увігнутий біля кінчика
-  const c1 = (sign: 1 | -1) => pt(bx + L * 0.30, sign * by * 1.22);
-  const c2 = (sign: 1 | -1) => pt(r1 - L * 0.16, sign * by * 0.34);
+  const c1 = (sign: 1 | -1) => pt(bx + L * 0.30, sign * by * 1.12);
+  const c2 = (sign: 1 | -1) => pt(r1 - L * 0.46, sign * by * 0.10);
   return (
     `M${pt(bx, by)}C${c1(1)} ${c2(1)} ${pt(r1, 0)}` +
     `C${c2(-1)} ${c1(-1)} ${pt(bx, -by)}`
@@ -62,7 +62,7 @@ function petalPath(a: number, w: number, r0: number, r1: number) {
 
 function lotus(count: number, r0: number, r1: number, phase = 0) {
   const step = (2 * Math.PI) / count;
-  const w = step / 2;
+  const w = (step / 2) * 0.9;
   let d = "";
   for (let i = 0; i < count; i++) {
     const a = phase + i * step - Math.PI / 2;
@@ -71,23 +71,22 @@ function lotus(count: number, r0: number, r1: number, phase = 0) {
   return d;
 }
 
-/** Бгупура: квадрат з половиною сторони h і брамою (напівширина g, виступ p) на кожній стороні. */
-function bhupura(h: number, g: number, p: number) {
-  const side = `M${-h} ${-h}H${-g}V${-h - p}H${g}V${-h}H${h}`;
-  return [0, 90, 180, 270]
-    .map(
-      (deg) =>
-        `<path transform="translate(${CX} ${CY}) rotate(${deg})" d="${side}"/>`,
-    )
-    .join("");
-}
-
-const BHUPURA = [
-  { h: 318, g: 44, p: 36 },
-  { h: 336, g: 52, p: 36 },
-  { h: 354, g: 60, p: 36 },
-]
-  .map(({ h, g, p }) => bhupura(h, g, p))
+/**
+ * Бгупура з макета: одна рамка (півсторона H) і на кожній стороні ступінчаста брама «Т»:
+ * вузький прохід (півширина GA), потім розширення (півширина GB) і верхня планка.
+ */
+const H = 292;
+const GA = 73;
+const GB = 143;
+const STEP1 = 30;
+const STEP2 = 66;
+const BHUPURA_D =
+  `M${-H} ${-H}H${-GA}V${-H - STEP1}H${-GB}V${-H - STEP2}H${GB}V${-H - STEP1}H${GA}V${-H}H${H}`;
+const BHUPURA = [0, 90, 180, 270]
+  .map(
+    (deg) =>
+      `<path transform="translate(${CX} ${CY}) rotate(${deg})" d="${BHUPURA_D}"/>`,
+  )
   .join("");
 
 const PATHS = {
@@ -117,7 +116,7 @@ export default function SriYantra() {
       </defs>
       <defs>
         <g id="yantra-lines">
-          <g strokeWidth="3.4">
+          <g strokeWidth="4.6">
             <circle cx={CX} cy={CY} r={R1} />
             <circle cx={CX} cy={CY} r={R2} />
             <circle cx={CX} cy={CY} r={R3} />
@@ -146,7 +145,7 @@ export default function SriYantra() {
             keyTimes="0; 0.62; 1"
             calcMode="spline"
             keySplines="0.45 0.05 0.55 0.95; 0 0 1 1"
-            dur="31s"
+            dur="24s"
             repeatCount="indefinite"
           />
         </linearGradient>

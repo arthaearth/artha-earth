@@ -68,22 +68,26 @@ export default function Hero() {
       />
       <div className="mist mist--near" aria-hidden />
       <div className="hero__yantra">
-        <Image
-          src="/images/yantra-glow-clean.png"
-          alt=""
-          fill
-          sizes="570px"
-          priority
-          className="yantra__glow"
-        />
-        <Image
-          src="/images/yantra-glow-clean.png"
-          alt=""
-          fill
-          sizes="570px"
-          className="yantra__glow yantra__glow--2"
-          aria-hidden
-        />
+        {/* золотий туман кружляє навколо нерухомої янтри: два шари у протилежні боки */}
+        <div className="yantra__orbit yantra__orbit--1" aria-hidden>
+          <Image
+            src="/images/yantra-glow-clean.png"
+            alt=""
+            fill
+            sizes="570px"
+            priority
+            className="yantra__glow"
+          />
+        </div>
+        <div className="yantra__orbit yantra__orbit--2" aria-hidden>
+          <Image
+            src="/images/yantra-glow-clean.png"
+            alt=""
+            fill
+            sizes="570px"
+            className="yantra__glow yantra__glow--2"
+          />
+        </div>
         <SriYantra />
         <div className="yantra__light" aria-hidden />
       </div>

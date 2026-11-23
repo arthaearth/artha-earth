@@ -1,5 +1,5 @@
-// Дрібні світлові пилинки, що повільно здіймаються вгору (чиста CSS-анімація).
-const COUNT = 30;
+// Золоті світні частинки, що пливуть екраном у різні боки (чиста CSS-анімація).
+const COUNT = 64;
 
 function rand(i: number, k: number) {
   const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5453;
@@ -7,12 +7,14 @@ function rand(i: number, k: number) {
 }
 
 const DOTS = Array.from({ length: COUNT }, (_, i) => ({
-  left: 8 + rand(i, 1) * 90,
-  top: 20 + rand(i, 2) * 70,
-  size: 1.5 + rand(i, 3) * 3,
-  dur: 14 + rand(i, 4) * 16,
-  delay: -rand(i, 5) * 30,
-  drift: (rand(i, 6) - 0.5) * 60,
+  left: 2 + rand(i, 1) * 96,
+  top: 8 + rand(i, 2) * 84,
+  size: 2 + rand(i, 3) * 4.5,
+  dur: 11 + rand(i, 4) * 15,
+  delay: -rand(i, 5) * 26,
+  dx: (rand(i, 6) - 0.4) * 460,
+  dy: (rand(i, 7) - 0.75) * 380,
+  wob: (rand(i, 8) - 0.5) * 120,
 }));
 
 export default function Particles() {
@@ -29,7 +31,9 @@ export default function Particles() {
               height: d.size,
               animationDuration: `${d.dur}s`,
               animationDelay: `${d.delay}s`,
-              "--drift": `${d.drift}px`,
+              "--dx": `${d.dx}px`,
+              "--dy": `${d.dy}px`,
+              "--wob": `${d.wob}px`,
             } as React.CSSProperties
           }
         />
