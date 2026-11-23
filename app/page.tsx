@@ -1,5 +1,11 @@
 import Hero from "../components/Hero";
+import SiteHeader from "../components/SiteHeader";
 
 export default function Home() {
-  return <Hero />;
+  return (
+    <>
+      <SiteHeader />
+      <Hero />
+    </>
+  );
 }

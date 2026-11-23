@@ -1,17 +1,9 @@
 import Image from "next/image";
-import Spiral from "./Spiral";
 import SriYantra from "./SriYantra";
-import Particles from "./Particles";
+import GoldDust from "./GoldDust";
+import ForestGL from "./ForestGL";
 import HeroFX from "./HeroFX";
 
-const NAV = [
-  { href: "#about", label: "Про мене" },
-  { href: "#services", label: "Консультації" },
-  { href: "#approach", label: "Мій підхід" },
-  { href: "#contacts", label: "Контакти" },
-];
-
-const LANGS = ["UA", "RU", "EN"];
 const DIRECTIONS = ["Джйотіш", "Нумерологія", "Васту", "Аюрведа"];
 
 export default function Hero() {
@@ -40,32 +32,9 @@ export default function Hero() {
         sizes="100vw"
         className="hero__bg"
       />
+      <ForestGL />
       <div className="hero__overlay" />
       <div className="mist mist--far" aria-hidden />
-      <Image
-        src="/images/light-rays.png"
-        alt=""
-        width={1254}
-        height={1254}
-        className="hero__rays"
-        priority
-      />
-      <Image
-        src="/images/light-rays.png"
-        alt=""
-        width={1254}
-        height={1254}
-        className="hero__rays hero__rays--2"
-        aria-hidden
-      />
-      <Image
-        src="/images/light-rays.png"
-        alt=""
-        width={1254}
-        height={1254}
-        className="hero__rays hero__rays--3"
-        aria-hidden
-      />
       <div className="mist mist--near" aria-hidden />
       <div className="hero__yantra">
         {/* золотий туман кружляє навколо нерухомої янтри: два шари у протилежні боки */}
@@ -91,43 +60,8 @@ export default function Hero() {
         <SriYantra />
         <div className="yantra__light" aria-hidden />
       </div>
-      <Particles />
+      <GoldDust />
       <HeroFX />
-
-      <header className="header">
-        <a href="#top" className="logo">
-          <span className="logo__name">
-            ARTHA{" "}
-            <Spiral />
-            {" "}EARTH
-          </span>
-          <span className="logo__tag">VEDIC KNOWLEDGE</span>
-        </a>
-        <nav className="nav" aria-label="Головне меню">
-          {NAV.map((i) => (
-            <a key={i.href} href={i.href}>
-              {i.label}
-            </a>
-          ))}
-        </nav>
-        <div className="header__right">
-          <div className="lang" role="group" aria-label="Мова">
-            {LANGS.map((l, idx) => (
-              <button
-                key={l}
-                type="button"
-                className={idx === 0 ? "lang__btn is-active" : "lang__btn"}
-                aria-pressed={idx === 0}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
-          <a href="#contacts" className="btn-outline btn-outline--sm">
-            Записатися
-          </a>
-        </div>
-      </header>
 
       <div className="hero__content">
         <p className="eyebrow">Давні ведичні знання для сучасного життя</p>
