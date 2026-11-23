@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Spiral from "./Spiral";
 import SriYantra from "./SriYantra";
+import Particles from "./Particles";
+import HeroFX from "./HeroFX";
 
 const NAV = [
   { href: "#about", label: "Про мене" },
@@ -24,6 +26,7 @@ export default function Hero() {
         className="hero__bg"
       />
       <div className="hero__overlay" />
+      <div className="mist mist--far" aria-hidden />
       <Image
         src="/images/light-rays.png"
         alt=""
@@ -32,7 +35,17 @@ export default function Hero() {
         className="hero__rays"
         priority
       />
+      <Image
+        src="/images/light-rays.png"
+        alt=""
+        width={1254}
+        height={1254}
+        className="hero__rays hero__rays--2"
+        aria-hidden
+      />
+      <div className="mist mist--near" aria-hidden />
       <div className="hero__yantra">
+        <div className="yantra__aura" aria-hidden />
         <Image
           src="/images/yantra-glow-clean.png"
           alt=""
@@ -41,8 +54,18 @@ export default function Hero() {
           priority
           className="yantra__glow"
         />
+        <Image
+          src="/images/yantra-glow-clean.png"
+          alt=""
+          fill
+          sizes="570px"
+          className="yantra__glow yantra__glow--2"
+          aria-hidden
+        />
         <SriYantra />
       </div>
+      <Particles />
+      <HeroFX />
 
       <header className="header">
         <a href="#top" className="logo">
