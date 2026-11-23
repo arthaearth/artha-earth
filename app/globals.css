@@ -103,7 +103,14 @@ ul { list-style: none; }
   .lead { font-size: 17px; }
   .sub { font-size: 15px; }
   .actions { gap: 16px; }
-  .strip__list { flex-wrap: wrap; }
+  /* янтра на мобільному — тихий фон, не конкурує з текстом */
+  .hero__yantra { opacity: .15; }
+  .hero__rays { opacity: .14; }
+  /* нижній рядок: кожен фрагмент в один рядок, шрифт зменшується разом із шириною екрана */
+  .strip { gap: 8px; padding: 14px 20px 18px; }
+  .strip__years, .strip__list { white-space: nowrap; font-size: clamp(9px, 2.85vw, 12px); letter-spacing: .06em; }
+  .strip__list { flex-wrap: nowrap; gap: .6em; }
+  .strip__list li + li::before { margin-right: .6em; }
 }
 
 /* золоті лінії-розділювачі: світяться, як золота димка, і повільно переливаються */
