@@ -16,7 +16,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 ul { list-style: none; }
 
 .hero { position: relative; padding-top: 93px; min-height: 855px; height: 100vh; max-height: 1000px; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; }
-.hero__bg { object-fit: cover; opacity: 0.6; scale: 1.08; translate: calc(var(--px, 0) * -7px) calc(var(--py, 0) * -5px); animation: bg-breathe 88s ease-in-out infinite alternate; }
+.hero__bg { object-fit: cover; opacity: 0.6; }
+.hero__rays { position: absolute; right: -4%; top: -6%; width: 40%; max-width: 580px; height: auto; opacity: .22; transform: rotate(9.47deg); transform-origin: 80% 12%; pointer-events: none; mix-blend-mode: screen;
+  filter: sepia(1) saturate(2.4) hue-rotate(-14deg) brightness(1.15); animation: rays-play 44s ease-in-out infinite alternate; }
+.hero__rays--2 { right: 3%; top: -9%; width: 30%; opacity: .12; transform: rotate(5deg) scaleX(-1); filter: sepia(1) saturate(2.6) hue-rotate(-14deg) blur(3px); animation: rays-play-2 61s ease-in-out infinite alternate; }
 .hero__overlay { position: absolute; inset: 0; background:
   linear-gradient(90deg, rgba(16,43,32,.93) 0%, rgba(23,49,38,.72) 48%, rgba(26,55,42,.35) 78%),
   linear-gradient(0deg, rgba(15,41,31,.72) 0%, rgba(15,41,31,0) 50%); }
@@ -35,24 +38,12 @@ ul { list-style: none; }
   animation: light-breathe 37.4s linear infinite, light-drift 57.2s ease-in-out infinite alternate; }
 
 /* туман перед лісом: шари різної швидкості дають відчуття глибини */
-.mist { position: absolute; left: 0; right: 0; pointer-events: none; background-repeat: repeat-x; filter: blur(14px); }
-.mist--far { top: 38%; height: 38%; opacity: .55; background-size: 1400px 100%; background-image:
-  radial-gradient(ellipse 360px 80px at 380px 55%, rgba(199,214,200,.30), rgba(199,214,200,0) 100%),
-  radial-gradient(ellipse 300px 62px at 1000px 40%, rgba(199,214,200,.22), rgba(199,214,200,0) 100%);
-  translate: calc(var(--px, 0) * -10px) 0; animation: mist-drift 242s linear infinite; }
-.mist--near { bottom: 70px; height: 30%; opacity: .7; background-size: 1000px 100%; background-image:
-  radial-gradient(ellipse 330px 70px at 300px 60%, rgba(214,226,210,.30), rgba(214,226,210,0) 100%),
-  radial-gradient(ellipse 260px 54px at 760px 35%, rgba(214,226,210,.20), rgba(214,226,210,0) 100%);
-  translate: calc(var(--px, 0) * 20px) calc(var(--py, 0) * 4px); animation: mist-drift-r 154s linear infinite; }
 
 
-@keyframes bg-breathe { from { transform: scale(1) translateY(0); } to { transform: scale(1.035) translateY(-6px); } }
 @keyframes smoke-flicker { 0%, 100% { opacity: 1; } 18% { opacity: .82; } 37% { opacity: .96; } 59% { opacity: .78; } 81% { opacity: .93; } }
 @keyframes smoke-flicker-2 { 0%, 100% { opacity: .55; } 24% { opacity: .38; } 48% { opacity: .62; } 73% { opacity: .42; } }
 @keyframes light-breathe { 0%, 100% { opacity: .55; } 12% { opacity: .25; } 31% { opacity: 1; } 49% { opacity: .38; } 67% { opacity: .95; } 85% { opacity: .3; } }
 @keyframes light-drift { 0% { translate: 70px -60px; scale: .9; } 50% { translate: -20px 10px; scale: 1.12; } 100% { translate: -90px 70px; scale: .95; } }
-@keyframes mist-drift { to { background-position-x: 1400px; } }
-@keyframes mist-drift-r { to { background-position-x: -1000px; } }
 @keyframes orbit-cw { to { transform: rotate(360deg); } }
 @keyframes orbit-ccw { to { transform: rotate(-360deg); } }
 
@@ -124,6 +115,7 @@ ul { list-style: none; }
 @keyframes gold-line-glow { 0%, 100% { opacity: .8; } 22% { opacity: 1; } 47% { opacity: .68; } 73% { opacity: .96; } }
 
 .header.is-scrolled { height: 76px; background: rgba(14, 32, 24, .8); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
-.forest-gl { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .6; display: block; }
-.gl-ready .hero__bg { display: none; }
 .gold-dust { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+@keyframes rays-play { 0% { transform: rotate(7.5deg); opacity: .14; } 24% { transform: rotate(9deg); opacity: .27; } 52% { transform: rotate(10.2deg); opacity: .18; } 78% { transform: rotate(11.4deg); opacity: .28; } 100% { transform: rotate(12deg); opacity: .2; } }
+@keyframes rays-play-2 { 0% { transform: rotate(3deg) scaleX(-1); opacity: .06; } 40% { transform: rotate(6deg) scaleX(-1); opacity: .16; } 100% { transform: rotate(9deg) scaleX(-1); opacity: .09; } }

@@ -1,8 +1,6 @@
 import Image from "next/image";
 import SriYantra from "./SriYantra";
 import GoldDust from "./GoldDust";
-import ForestGL from "./ForestGL";
-import HeroFX from "./HeroFX";
 
 const DIRECTIONS = ["Джйотіш", "Нумерологія", "Васту", "Аюрведа"];
 
@@ -32,10 +30,23 @@ export default function Hero() {
         sizes="100vw"
         className="hero__bg"
       />
-      <ForestGL />
       <div className="hero__overlay" />
-      <div className="mist mist--far" aria-hidden />
-      <div className="mist mist--near" aria-hidden />
+      <Image
+        src="/images/light-rays.png"
+        alt=""
+        width={1254}
+        height={1254}
+        className="hero__rays"
+        priority
+      />
+      <Image
+        src="/images/light-rays.png"
+        alt=""
+        width={1254}
+        height={1254}
+        className="hero__rays hero__rays--2"
+        aria-hidden
+      />
       <div className="hero__yantra">
         {/* золотий туман кружляє навколо нерухомої янтри: два шари у протилежні боки */}
         <div className="yantra__orbit yantra__orbit--1" aria-hidden>
@@ -61,7 +72,6 @@ export default function Hero() {
         <div className="yantra__light" aria-hidden />
       </div>
       <GoldDust />
-      <HeroFX />
 
       <div className="hero__content">
         <p className="eyebrow">Давні ведичні знання для сучасного життя</p>

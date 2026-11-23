@@ -73,9 +73,9 @@ function lotus(count: number, r0: number, r1: number, phase = 0) {
 
 /**
  * Бгупура — одна рамка зі ступінчастими брамами «Т» на кожній стороні (як у макеті).
- * Рамка охоплює всі три кола з запасом.
+ * Рамка охоплює кінчики пелюсток із запасом.
  */
-const H = 340; // охоплює третє коло (R3 = 312)
+const H = 332; // охоплює кінчики 16 пелюсток (R3 = 312) із запасом
 const GA = 78; // півширина проходу
 const GB = 150; // півширина верхньої планки
 const STEP1 = 30;
@@ -120,7 +120,6 @@ export default function SriYantra() {
           <g strokeWidth="4.6">
             <circle cx={CX} cy={CY} r={R1} />
             <circle cx={CX} cy={CY} r={R2} />
-            <circle cx={CX} cy={CY} r={R3} />
             <path d={PATHS.petals8} />
             <path d={PATHS.petals16} />
             <g dangerouslySetInnerHTML={{ __html: BHUPURA }} />

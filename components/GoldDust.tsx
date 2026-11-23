@@ -3,12 +3,12 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Золоті частинки. Без курсора лише кілька їх неспішно пливуть екраном.
- * Коли курсор (або палець) рухається по екрану, усі частинки збираються навколо нього
- * й кружляють, а рухом курсора ними можна керувати. Курсор пішов — частинки розлітаються.
+ * Золоті частинки: кілька неспішно пливуть екраном. Поки курсор (або палець) рухається,
+ * невелика група збирається за ним і кружляє — рухом курсора нею можна керувати.
+ * Курсор зупинився чи пішов — група розсіюється.
  */
-const N = 64;
-const AMBIENT = 10;
+const N = 30;
+const AMBIENT = 14; // вільно літають завжди; решта — «супутники» курсора
 
 type P = {
   x: number; y: number; vx: number; vy: number;
@@ -60,16 +60,17 @@ export default function GoldDust() {
       vx: (rnd(i, 3) - 0.5) * 14, vy: (rnd(i, 4) - 0.5) * 10,
       r: 1.1 + rnd(i, 5) * 1.7, a: i < AMBIENT ? 1 : 0,
       seed: rnd(i, 6), ph: rnd(i, 7) * Math.PI * 2,
-      rr: 38 + rnd(i, 8) * 140, om: (rnd(i, 9) > 0.5 ? 1 : -1) * (0.5 + rnd(i, 10) * 1.1),
+      rr: 20 + rnd(i, 8) * 62, om: (rnd(i, 9) > 0.5 ? 1 : -1) * (0.5 + rnd(i, 10) * 1.1),
     }));
 
-    let engaged = false, mx = 0, my = 0, act = 0;
+    let inside = false, lastMove = 0, mx = 0, my = 0, act = 0, engaged = false;
     const onMove = (e: PointerEvent) => {
       const r = hero.getBoundingClientRect();
       mx = e.clientX - r.left; my = e.clientY - r.top;
-      engaged = true;
+      inside = true;
+      lastMove = performance.now();
     };
-    const onLeave = () => { engaged = false; };
+    const onLeave = () => { inside = false; };
     if (!reduce) {
       hero.addEventListener("pointermove", onMove);
       hero.addEventListener("pointerleave", onLeave);
@@ -86,6 +87,7 @@ export default function GoldDust() {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       const t = (now - t0) / 1000;
+      engaged = inside && now - lastMove < 1500;
       act += ((engaged ? 1 : 0) - act) * Math.min(1, dt * 2);
 
       ctx.clearRect(0, 0, W, H);
@@ -93,7 +95,7 @@ export default function GoldDust() {
 
       if (act > 0.02) {
         const gr = ctx.createRadialGradient(mx, my, 0, mx, my, 130);
-        gr.addColorStop(0, `rgba(243,210,138,${0.10 * act})`);
+        gr.addColorStop(0, `rgba(243,210,138,${0.06 * act})`);
         gr.addColorStop(1, "rgba(243,210,138,0)");
         ctx.fillStyle = gr;
         ctx.fillRect(mx - 130, my - 130, 260, 260);
@@ -101,7 +103,7 @@ export default function GoldDust() {
 
       for (let i = 0; i < N; i++) {
         const p = ps[i];
-        if (engaged) {
+        if (engaged && i >= AMBIENT) {
           // притягування до орбіти навколо курсора
           const ang = p.ph + t * p.om;
           const rad = p.rr * (0.65 + 0.35 * Math.sin(t * 0.8 + p.seed * 6));
@@ -121,7 +123,7 @@ export default function GoldDust() {
         const sp = Math.hypot(p.vx, p.vy);
         if (sp > 1100) { p.vx *= 1100 / sp; p.vy *= 1100 / sp; }
         p.x += p.vx * dt; p.y += p.vy * dt;
-        if (!engaged) {
+        if (!(engaged && i >= AMBIENT)) {
           if (p.x < -20) p.x = W + 20; else if (p.x > W + 20) p.x = -20;
           if (p.y < -20) p.y = H + 20; else if (p.y > H + 20) p.y = -20;
         }
