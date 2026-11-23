@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Spiral from "./Spiral";
+import SriYantra from "./SriYantra";
 
 const NAV = [
   { href: "#about", label: "Про мене" },
@@ -31,14 +32,17 @@ export default function Hero() {
         className="hero__rays"
         priority
       />
-      <Image
-        src="/images/yantra.png"
-        alt="Янтра"
-        width={1254}
-        height={1254}
-        className="hero__yantra"
-        priority
-      />
+      <div className="hero__yantra">
+        <Image
+          src="/images/yantra-glow-clean.png"
+          alt=""
+          fill
+          sizes="570px"
+          priority
+          className="yantra__glow"
+        />
+        <SriYantra />
+      </div>
 
       <header className="header">
         <a href="#top" className="logo">
