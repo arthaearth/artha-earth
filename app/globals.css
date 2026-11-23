@@ -146,3 +146,37 @@ ul { list-style: none; }
 .strip__scroll { color: #b8975f; }
 .strip__scroll span { color: #b8975f; }
 .header.is-scrolled { background: rgba(22, 34, 29, .82); }
+
+/* ===== Бургер-меню (екрани до 1100 px, де звичайне меню приховане) ===== */
+.burger { display: none; position: relative; width: 40px; height: 40px; margin-right: -8px; }
+.burger span { position: absolute; left: 9px; right: 9px; height: 1.5px; background: #e6d9bc; border-radius: 1px; transition: transform .3s, opacity .2s, top .3s; }
+.burger span:nth-child(1) { top: 13px; }
+.burger span:nth-child(2) { top: 19.5px; }
+.burger span:nth-child(3) { top: 26px; }
+.header.is-open .burger span:nth-child(1) { top: 19.5px; transform: rotate(45deg); }
+.header.is-open .burger span:nth-child(2) { opacity: 0; }
+.header.is-open .burger span:nth-child(3) { top: 19.5px; transform: rotate(-45deg); }
+.mobile-menu { display: none; }
+.lang--panel { display: none; }
+@media (max-width: 1100px) {
+  .burger { display: block; }
+  .header.is-open { background: rgba(22, 34, 29, .97); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .mobile-menu { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; padding: 8px 32px 28px;
+    background: rgba(20, 31, 26, .995); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(184, 151, 95, .35); box-shadow: 0 24px 40px rgba(8, 18, 13, .45);
+    opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .3s, transform .3s, visibility .3s; }
+  .header.is-open .mobile-menu { opacity: 1; visibility: visible; transform: none; }
+  .mobile-menu nav { display: flex; flex-direction: column; }
+  .mobile-menu nav a { padding: 18px 0; font-size: 15px; font-weight: 500; letter-spacing: 1.32px; text-transform: uppercase; color: #c9cfc6; border-bottom: 1px solid rgba(184, 151, 95, .2); }
+  .mobile-menu nav a:active, .mobile-menu nav a:hover { color: #e6d9bc; }
+  .mobile-menu__cta { justify-content: space-between; margin-top: 24px; font-size: 16px; }
+}
+@media (max-width: 640px) {
+  .mobile-menu { padding: 4px 20px 24px; }
+}
+/* на дуже вузьких екранах мови переїжджають із шапки в меню, щоб шапка не переповнювалась */
+@media (max-width: 420px) {
+  .lang--header { display: none; }
+  .lang--panel { display: flex; margin-top: 22px; gap: 14px; }
+  .lang--panel .lang__btn { font-size: 14px; }
+}
