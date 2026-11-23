@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Spiral from "./Spiral";
 
 const NAV = [
   { href: "#about", label: "Про мене" },
@@ -42,7 +43,7 @@ export default function Hero() {
       <header className="header">
         <a href="#top" className="logo">
           <span className="logo__name">
-            ARTHA <em>&amp;</em> EARTH
+            ARTHA <Spiral /> EARTH
           </span>
           <span className="logo__tag">VEDIC KNOWLEDGE</span>
         </a>
