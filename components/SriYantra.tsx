@@ -75,9 +75,9 @@ function lotus(count: number, r0: number, r1: number, phase = 0) {
  * Бгупура з макета: одна рамка (півсторона H) і на кожній стороні ступінчаста брама «Т»:
  * вузький прохід (півширина GA), потім розширення (півширина GB) і верхня планка.
  */
-const H = 292;
-const GA = 73;
-const GB = 143;
+const H = 340; // охоплює третє коло (R3 = 312) із запасом
+const GA = 78;
+const GB = 150;
 const STEP1 = 30;
 const STEP2 = 66;
 const BHUPURA_D =
@@ -145,7 +145,7 @@ export default function SriYantra() {
             keyTimes="0; 0.62; 1"
             calcMode="spline"
             keySplines="0.45 0.05 0.55 0.95; 0 0 1 1"
-            dur="24s"
+            dur="54s"
             repeatCount="indefinite"
           />
         </linearGradient>

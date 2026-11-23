@@ -21,13 +21,13 @@ export default function Hero() {
       <svg width="0" height="0" className="fx-defs" aria-hidden focusable="false">
         <filter id="smoke-warp-a" x="-12%" y="-12%" width="124%" height="124%">
           <feTurbulence type="fractalNoise" baseFrequency="0.0055 0.0085" numOctaves="2" seed="4" result="n">
-            <animate attributeName="baseFrequency" dur="47s" repeatCount="indefinite" values="0.0055 0.0085;0.0085 0.0062;0.0058 0.0098;0.0055 0.0085" />
+            <animate attributeName="baseFrequency" dur="104s" repeatCount="indefinite" values="0.0055 0.0085;0.0085 0.0062;0.0058 0.0098;0.0055 0.0085" />
           </feTurbulence>
           <feDisplacementMap in="SourceGraphic" in2="n" scale="34" xChannelSelector="R" yChannelSelector="G" />
         </filter>
         <filter id="smoke-warp-b" x="-12%" y="-12%" width="124%" height="124%">
           <feTurbulence type="fractalNoise" baseFrequency="0.0075 0.005" numOctaves="2" seed="11" result="n">
-            <animate attributeName="baseFrequency" dur="61s" repeatCount="indefinite" values="0.0075 0.005;0.005 0.0092;0.0092 0.0058;0.0075 0.005" />
+            <animate attributeName="baseFrequency" dur="134s" repeatCount="indefinite" values="0.0075 0.005;0.005 0.0092;0.0092 0.0058;0.0075 0.005" />
           </feTurbulence>
           <feDisplacementMap in="SourceGraphic" in2="n" scale="42" xChannelSelector="G" yChannelSelector="R" />
         </filter>

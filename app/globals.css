@@ -16,37 +16,37 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 ul { list-style: none; }
 
 .hero { position: relative; min-height: 855px; height: 100vh; max-height: 1000px; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; }
-.hero__bg { object-fit: cover; opacity: 0.6; scale: 1.08; translate: calc(var(--px, 0) * -7px) calc(var(--py, 0) * -5px); animation: bg-breathe 40s ease-in-out infinite alternate; }
+.hero__bg { object-fit: cover; opacity: 0.6; scale: 1.08; translate: calc(var(--px, 0) * -7px) calc(var(--py, 0) * -5px); animation: bg-breathe 88s ease-in-out infinite alternate; }
 .hero__overlay { position: absolute; inset: 0; background:
   linear-gradient(90deg, rgba(16,43,32,.93) 0%, rgba(23,49,38,.72) 48%, rgba(26,55,42,.35) 78%),
   linear-gradient(0deg, rgba(15,41,31,.72) 0%, rgba(15,41,31,0) 50%); }
-.hero__rays { position: absolute; right: -4%; top: -6%; width: 40%; max-width: 580px; height: auto; opacity: .2; transform: rotate(9.47deg); transform-origin: 80% 12%; pointer-events: none; mix-blend-mode: screen; translate: calc(var(--px, 0) * 12px) calc(var(--py, 0) * 8px); animation: rays-sway 19s ease-in-out infinite alternate; }
-.hero__rays--2 { right: 2%; top: -10%; width: 34%; opacity: .12; transform: rotate(4deg) scaleX(-1); filter: blur(2px); animation: rays-sway-2 27s ease-in-out infinite alternate; }
-.hero__rays--3 { right: -12%; top: -4%; width: 46%; opacity: .08; transform: rotate(14deg); filter: blur(4px); animation: rays-sway-3 33s ease-in-out infinite alternate; }
+.hero__rays { position: absolute; right: -4%; top: -6%; width: 40%; max-width: 580px; height: auto; opacity: .2; transform: rotate(9.47deg); transform-origin: 80% 12%; pointer-events: none; mix-blend-mode: screen; translate: calc(var(--px, 0) * 12px) calc(var(--py, 0) * 8px); animation: rays-sway 41.8s ease-in-out infinite alternate; }
+.hero__rays--2 { right: 2%; top: -10%; width: 34%; opacity: .12; transform: rotate(4deg) scaleX(-1); filter: blur(2px); animation: rays-sway-2 59.4s ease-in-out infinite alternate; }
+.hero__rays--3 { right: -12%; top: -4%; width: 46%; opacity: .08; transform: rotate(14deg); filter: blur(4px); animation: rays-sway-3 72.6s ease-in-out infinite alternate; }
 .hero__yantra { position: absolute; left: calc(46.67% + 83px); top: 169px; width: 569px; height: 581px; opacity: .6; pointer-events: none; }
 .fx-defs { position: absolute; width: 0; height: 0; }
 .yantra__orbit { position: absolute; inset: 0; transform-origin: 50% 48.5%; }
-.yantra__orbit--1 { animation: orbit-cw 58s linear infinite; }
-.yantra__orbit--2 { animation: orbit-ccw 84s linear infinite; }
-.yantra__glow { object-fit: contain; opacity: 1; filter: url(#smoke-warp-a); animation: smoke-flicker 23s linear infinite; }
-.yantra__glow--2 { opacity: .6; mix-blend-mode: screen; filter: url(#smoke-warp-b) blur(2px); animation: smoke-flicker-2 29s linear infinite; }
+.yantra__orbit--1 { animation: orbit-cw 127.6s linear infinite; }
+.yantra__orbit--2 { animation: orbit-ccw 184.8s linear infinite; }
+.yantra__glow { object-fit: contain; opacity: 1; filter: url(#smoke-warp-a); animation: smoke-flicker 50.6s linear infinite; }
+.yantra__glow--2 { opacity: .6; mix-blend-mode: screen; filter: url(#smoke-warp-b) blur(2px); animation: smoke-flicker-2 63.8s linear infinite; }
 .yantra__svg { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 0 6px rgba(238,206,148,.35)); }
 .yantra__sheen { mix-blend-mode: screen; opacity: 1; }
 /* світло, що падає на янтру з верхнього правого кута; нерівний ритм без помітного циклу */
 .yantra__light { position: absolute; inset: -22%; mix-blend-mode: screen; background:
   radial-gradient(ellipse closest-side at 74% 26%, rgba(255,241,205,.40), rgba(255,241,205,.14) 50%, rgba(255,241,205,0) 100%);
-  animation: light-breathe 17s linear infinite, light-drift 26s ease-in-out infinite alternate; }
+  animation: light-breathe 37.4s linear infinite, light-drift 57.2s ease-in-out infinite alternate; }
 
 /* туман перед лісом: шари різної швидкості дають відчуття глибини */
 .mist { position: absolute; left: 0; right: 0; pointer-events: none; background-repeat: repeat-x; filter: blur(14px); }
 .mist--far { top: 38%; height: 38%; opacity: .55; background-size: 1400px 100%; background-image:
   radial-gradient(ellipse 360px 80px at 380px 55%, rgba(199,214,200,.30), rgba(199,214,200,0) 100%),
   radial-gradient(ellipse 300px 62px at 1000px 40%, rgba(199,214,200,.22), rgba(199,214,200,0) 100%);
-  translate: calc(var(--px, 0) * -10px) 0; animation: mist-drift 110s linear infinite; }
+  translate: calc(var(--px, 0) * -10px) 0; animation: mist-drift 242s linear infinite; }
 .mist--near { bottom: 70px; height: 30%; opacity: .7; background-size: 1000px 100%; background-image:
   radial-gradient(ellipse 330px 70px at 300px 60%, rgba(214,226,210,.30), rgba(214,226,210,0) 100%),
   radial-gradient(ellipse 260px 54px at 760px 35%, rgba(214,226,210,.20), rgba(214,226,210,0) 100%);
-  translate: calc(var(--px, 0) * 20px) calc(var(--py, 0) * 4px); animation: mist-drift-r 70s linear infinite; }
+  translate: calc(var(--px, 0) * 20px) calc(var(--py, 0) * 4px); animation: mist-drift-r 154s linear infinite; }
 
 .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
 .particles span { position: absolute; border-radius: 50%; background: radial-gradient(circle, #fffbe6 0%, #f3d28a 38%, rgba(238,206,148,0) 72%); box-shadow: 0 0 8px 1px rgba(243,210,138,.55); opacity: 0; animation: mote ease-in-out infinite; }
