@@ -180,3 +180,26 @@ ul { list-style: none; }
   .lang--panel { display: flex; margin-top: 22px; gap: 14px; }
   .lang--panel .lang__btn { font-size: 14px; }
 }
+
+/* ===== Корекції за тестом контрастності (WCAG AA) ===== */
+.nav a { color: #dde2d9; opacity: .96; }
+.lang__btn { color: #c3cec6; opacity: 1; }
+.lang__btn.is-active { opacity: 1; }
+.btn-outline--sm { background: rgba(22, 34, 29, .58); }
+/* на мобільному промені мають бути слабшими й під час анімації (анімація перекриває статичну opacity) */
+@media (max-width: 640px) {
+  .hero__rays { animation-name: rays-play-m; }
+  .hero__rays--2 { animation-name: rays-play-2-m; }
+}
+@keyframes rays-play-m { 0% { transform: rotate(6deg); opacity: .05; } 18% { transform: rotate(8.5deg); opacity: .12; } 37% { transform: rotate(10deg); opacity: .06; } 58% { transform: rotate(12deg); opacity: .14; } 79% { transform: rotate(13.5deg); opacity: .07; } 100% { transform: rotate(14.5deg); opacity: .12; } }
+@keyframes rays-play-2-m { 0% { transform: rotate(1deg) scaleX(-1); opacity: .02; } 35% { transform: rotate(6deg) scaleX(-1); opacity: .08; } 65% { transform: rotate(9deg) scaleX(-1); opacity: .03; } 100% { transform: rotate(12deg) scaleX(-1); opacity: .07; } }
+
+/* мобільний: текст на всю ширину, тож фон трохи темніший, а золото надпису світліше */
+@media (max-width: 640px) {
+  .hero__overlay::after { content: ""; position: absolute; inset: 0; background: rgba(17, 30, 24, .5); }
+  .eyebrow { color: #cdb27c; }
+}
+
+/* м'яке затемнення під шапкою, щоб світло з кута не гасило меню й мови */
+.header::before { content: ""; position: absolute; inset: 0 0 -8px 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(14, 28, 22, .62) 0%, rgba(14, 28, 22, .38) 70%, rgba(14, 28, 22, 0) 100%); }
