@@ -1,15 +1,20 @@
-// Логарифмічна спіраль, що замінює «&» у логотипі.
-const TURNS = 2.4;
-const STEPS = 120;
+// Спіраль, що замінює «&» у логотипі: розкручується від центру
+// й закінчується у верхньому правому куті.
+const TURNS = 2.1;
+const STEPS = 140;
+const END_ANGLE = -Math.PI / 4; // кут «вгору-вправо»
+const R_START = 0.4;
+const R_END = 10.5;
 
 function buildPath() {
+  const total = TURNS * 2 * Math.PI;
   const pts: string[] = [];
-  const maxTheta = TURNS * 2 * Math.PI;
   for (let i = 0; i <= STEPS; i++) {
-    const t = (i / STEPS) * maxTheta;
-    const r = 0.6 + 10.4 * (t / maxTheta) ** 1.15;
-    const x = 12 + r * Math.cos(t - Math.PI / 2);
-    const y = 12 + r * Math.sin(t - Math.PI / 2);
+    const k = i / STEPS;
+    const phi = END_ANGLE - (1 - k) * total;
+    const r = R_START + (R_END - R_START) * k;
+    const x = 12 + r * Math.cos(phi);
+    const y = 12 + r * Math.sin(phi);
     pts.push(`${i === 0 ? "M" : "L"}${x.toFixed(2)} ${y.toFixed(2)}`);
   }
   return pts.join(" ");
@@ -22,15 +27,12 @@ export default function Spiral() {
     <svg
       className="logo__spiral"
       viewBox="0 0 24 24"
-      width="22"
-      height="22"
       role="img"
       aria-label="&"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.1"
+      strokeWidth="1.5"
       strokeLinecap="round"
-      strokeLinejoin="round"
     >
       <path d={PATH} />
     </svg>

@@ -43,7 +43,9 @@ export default function Hero() {
       <header className="header">
         <a href="#top" className="logo">
           <span className="logo__name">
-            ARTHA <Spiral /> EARTH
+            ARTHA{" "}
+            <Spiral />
+            {" "}EARTH
           </span>
           <span className="logo__tag">VEDIC KNOWLEDGE</span>
         </a>
