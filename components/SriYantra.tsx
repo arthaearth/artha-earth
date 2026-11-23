@@ -110,70 +110,60 @@ export default function SriYantra() {
     >
       <defs>
         <linearGradient id="yantra-gold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f6dc9c" />
-          <stop offset="0.5" stopColor="#d4a03c" />
+          <stop offset="0" stopColor="#f0cf86" />
+          <stop offset="0.55" stopColor="#d4a03c" />
           <stop offset="1" stopColor="#a9792a" />
-          {/* повільний «перелив» золота */}
+        </linearGradient>
+      </defs>
+      <defs>
+        <g id="yantra-lines">
+          <g strokeWidth="3.4">
+            <circle cx={CX} cy={CY} r={R1} />
+            <circle cx={CX} cy={CY} r={R2} />
+            <circle cx={CX} cy={CY} r={R3} />
+            <path d={PATHS.petals8} />
+            <path d={PATHS.petals16} />
+            <g dangerouslySetInnerHTML={{ __html: BHUPURA }} />
+          </g>
+          <path d={PATHS.triangles} strokeWidth="3" />
+        </g>
+        {/* м'яка смуга світла, що неспішно ковзає з верхнього правого кута вниз-ліворуч */}
+        <linearGradient
+          id="yantra-light"
+          gradientUnits="userSpaceOnUse"
+          x1="900"
+          y1="0"
+          x2="560"
+          y2="340"
+        >
+          <stop offset="0" stopColor="#fff6dc" stopOpacity="0" />
+          <stop offset="0.5" stopColor="#fff6dc" stopOpacity="0.95" />
+          <stop offset="1" stopColor="#fff6dc" stopOpacity="0" />
           <animateTransform
             attributeName="gradientTransform"
-            type="rotate"
-            from="0 0.5 0.5"
-            to="360 0.5 0.5"
-            dur="48s"
+            type="translate"
+            values="260 -260; -760 760; -760 760"
+            keyTimes="0; 0.62; 1"
+            calcMode="spline"
+            keySplines="0.45 0.05 0.55 0.95; 0 0 1 1"
+            dur="31s"
             repeatCount="indefinite"
           />
         </linearGradient>
-        {/* ніжний рельєф: світлий блік зверху-ліворуч + м'яка тінь знизу-праворуч */}
-        <filter
-          id="yantra-emboss"
-          filterUnits="userSpaceOnUse"
-          x="0"
-          y="0"
-          width="1254"
-          height="1254"
-          colorInterpolationFilters="sRGB"
-        >
-          <feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="blur" />
-          <feSpecularLighting
-            in="blur"
-            surfaceScale="3.2"
-            specularConstant="0.85"
-            specularExponent="18"
-            lightingColor="#fff1c9"
-            result="spec"
-          >
-            <feDistantLight azimuth="235" elevation="50" />
-          </feSpecularLighting>
-          <feComposite in="spec" in2="SourceAlpha" operator="in" result="hi" />
-          <feOffset in="SourceAlpha" dx="2.2" dy="2.8" result="off" />
-          <feGaussianBlur in="off" stdDeviation="2.4" result="softOff" />
-          <feFlood floodColor="#06120b" floodOpacity="0.55" />
-          <feComposite in2="softOff" operator="in" result="shadow" />
-          <feMerge>
-            <feMergeNode in="shadow" />
-            <feMergeNode in="SourceGraphic" />
-            <feMergeNode in="hi" />
-          </feMerge>
-        </filter>
       </defs>
-      <g filter="url(#yantra-emboss)">
-      <g strokeWidth="4">
-        <circle cx={CX} cy={CY} r={R1} />
-        <circle cx={CX} cy={CY} r={R2} />
-        <circle cx={CX} cy={CY} r={R3} />
-        <path d={PATHS.petals8} />
-        <path d={PATHS.petals16} />
-        <g dangerouslySetInnerHTML={{ __html: BHUPURA }} />
-      </g>
-      <path d={PATHS.triangles} strokeWidth="3.4" />
+      <use href="#yantra-lines" />
+      <use
+        href="#yantra-lines"
+        stroke="url(#yantra-light)"
+        className="yantra__sheen"
+      />
       <circle
         cx={CX}
         cy={CY}
-        r="5.5"
+        r="4.5"
         fill="url(#yantra-gold)"
         stroke="none"
       />
-      </g>
     </svg>
   );
 }

@@ -20,13 +20,19 @@ ul { list-style: none; }
 .hero__overlay { position: absolute; inset: 0; background:
   linear-gradient(90deg, rgba(16,43,32,.93) 0%, rgba(23,49,38,.72) 48%, rgba(26,55,42,.35) 78%),
   linear-gradient(0deg, rgba(15,41,31,.72) 0%, rgba(15,41,31,0) 50%); }
-.hero__rays { position: absolute; right: -4%; top: -6%; width: 40%; max-width: 580px; height: auto; opacity: .2; transform: rotate(9.47deg); transform-origin: 80% 12%; pointer-events: none; mix-blend-mode: screen; translate: calc(var(--px, 0) * 12px) calc(var(--py, 0) * 8px); animation: rays-sway 16s ease-in-out infinite alternate; }
-.hero__rays--2 { right: 2%; top: -10%; width: 34%; opacity: .12; transform: rotate(4deg) scaleX(-1); filter: blur(2px); animation: rays-sway-2 22s ease-in-out infinite alternate; }
-.hero__yantra { position: absolute; left: calc(46.67% + 83px); top: 169px; width: 569px; height: 581px; opacity: .85; pointer-events: none; translate: calc(var(--px, 0) * 16px) calc(var(--py, 0) * 11px); }
-.yantra__aura { position: absolute; inset: -12%; border-radius: 50%; background: radial-gradient(circle, rgba(238,206,148,.28) 0%, rgba(238,206,148,.10) 40%, rgba(238,206,148,0) 68%); animation: aura-pulse 7s ease-in-out infinite; }
-.yantra__glow { object-fit: contain; opacity: .8; transform-origin: 50% 52%; animation: smoke-a 38s ease-in-out infinite alternate; }
-.yantra__glow--2 { opacity: .5; mix-blend-mode: screen; filter: blur(3px); animation: smoke-b 52s ease-in-out infinite alternate; }
-.yantra__svg { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 0 7px rgba(238,206,148,.35)); animation: gold-glow 6s ease-in-out infinite; }
+.hero__rays { position: absolute; right: -4%; top: -6%; width: 40%; max-width: 580px; height: auto; opacity: .2; transform: rotate(9.47deg); transform-origin: 80% 12%; pointer-events: none; mix-blend-mode: screen; translate: calc(var(--px, 0) * 12px) calc(var(--py, 0) * 8px); animation: rays-sway 19s ease-in-out infinite alternate; }
+.hero__rays--2 { right: 2%; top: -10%; width: 34%; opacity: .12; transform: rotate(4deg) scaleX(-1); filter: blur(2px); animation: rays-sway-2 27s ease-in-out infinite alternate; }
+.hero__rays--3 { right: -12%; top: -4%; width: 46%; opacity: .08; transform: rotate(14deg); filter: blur(4px); animation: rays-sway-3 33s ease-in-out infinite alternate; }
+.hero__yantra { position: absolute; left: calc(46.67% + 83px); top: 169px; width: 569px; height: 581px; opacity: .6; pointer-events: none; translate: calc(var(--px, 0) * 16px) calc(var(--py, 0) * 11px); }
+.fx-defs { position: absolute; width: 0; height: 0; }
+.yantra__glow { object-fit: contain; opacity: 1; filter: url(#smoke-warp-a); animation: smoke-flicker 23s linear infinite; }
+.yantra__glow--2 { opacity: .55; mix-blend-mode: screen; filter: url(#smoke-warp-b) blur(2px); animation: smoke-flicker-2 29s linear infinite; }
+.yantra__svg { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 0 6px rgba(238,206,148,.35)); }
+.yantra__sheen { mix-blend-mode: screen; opacity: .9; }
+/* світло, що падає на янтру з верхнього правого кута; нерівний ритм без помітного циклу */
+.yantra__light { position: absolute; inset: -22%; mix-blend-mode: screen; background:
+  radial-gradient(ellipse closest-side at 74% 26%, rgba(255,241,205,.40), rgba(255,241,205,.14) 50%, rgba(255,241,205,0) 100%);
+  animation: light-breathe 19s linear infinite, light-drift 37s ease-in-out infinite alternate; }
 
 /* туман перед лісом: шари різної швидкості дають відчуття глибини */
 .mist { position: absolute; left: 0; right: 0; pointer-events: none; background-repeat: repeat-x; filter: blur(14px); }
@@ -43,12 +49,13 @@ ul { list-style: none; }
 .particles span { position: absolute; border-radius: 50%; background: radial-gradient(circle, #fff3cf 0%, rgba(238,206,148,.8) 40%, rgba(238,206,148,0) 70%); opacity: 0; animation: mote linear infinite; }
 
 @keyframes bg-breathe { from { transform: scale(1) translateY(0); } to { transform: scale(1.035) translateY(-6px); } }
-@keyframes rays-sway { from { transform: rotate(7.6deg); opacity: .14; } to { transform: rotate(11.4deg); opacity: .28; } }
+@keyframes rays-sway { 0% { transform: rotate(7.6deg); opacity: .14; } 22% { transform: rotate(8.9deg); opacity: .24; } 47% { transform: rotate(9.6deg); opacity: .17; } 71% { transform: rotate(10.8deg); opacity: .29; } 100% { transform: rotate(11.4deg); opacity: .2; } }
+@keyframes rays-sway-3 { 0% { transform: rotate(12deg); opacity: .04; } 35% { transform: rotate(14.5deg); opacity: .13; } 62% { transform: rotate(16deg); opacity: .07; } 100% { transform: rotate(17.5deg); opacity: .12; } }
+@keyframes smoke-flicker { 0%, 100% { opacity: 1; } 18% { opacity: .82; } 37% { opacity: .96; } 59% { opacity: .78; } 81% { opacity: .93; } }
+@keyframes smoke-flicker-2 { 0%, 100% { opacity: .55; } 24% { opacity: .38; } 48% { opacity: .62; } 73% { opacity: .42; } }
+@keyframes light-breathe { 0%, 100% { opacity: .75; } 14% { opacity: .5; } 33% { opacity: .95; } 52% { opacity: .62; } 68% { opacity: .88; } 86% { opacity: .55; } }
+@keyframes light-drift { from { translate: 18px -14px; } to { translate: -22px 20px; } }
 @keyframes rays-sway-2 { from { transform: rotate(2deg) scaleX(-1); opacity: .06; } to { transform: rotate(6.5deg) scaleX(-1); opacity: .18; } }
-@keyframes aura-pulse { 0%, 100% { opacity: .55; transform: scale(.96); } 50% { opacity: 1; transform: scale(1.04); } }
-@keyframes smoke-a { from { transform: rotate(-3deg) scale(.99); } to { transform: rotate(4deg) scale(1.04); } }
-@keyframes smoke-b { from { transform: rotate(5deg) scale(1.05); } to { transform: rotate(-5deg) scale(.98); } }
-@keyframes gold-glow { 0%, 100% { filter: drop-shadow(0 0 5px rgba(238,206,148,.25)); } 50% { filter: drop-shadow(0 0 12px rgba(238,206,148,.55)); } }
 @keyframes mist-drift { to { background-position-x: 1400px; } }
 @keyframes mist-drift-r { to { background-position-x: -1000px; } }
 @keyframes mote { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: .85; } 85% { opacity: .5; } 100% { opacity: 0; transform: translate(var(--drift, 20px), -140px); } }

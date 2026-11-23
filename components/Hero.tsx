@@ -17,6 +17,21 @@ const DIRECTIONS = ["Джйотіш", "Нумерологія", "Васту", "�
 export default function Hero() {
   return (
     <section className="hero">
+      {/* фільтри «течії» для золотої димки: шум повільно змінюється й зміщує піксели */}
+      <svg width="0" height="0" className="fx-defs" aria-hidden focusable="false">
+        <filter id="smoke-warp-a" x="-12%" y="-12%" width="124%" height="124%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.0055 0.0085" numOctaves="2" seed="4" result="n">
+            <animate attributeName="baseFrequency" dur="47s" repeatCount="indefinite" values="0.0055 0.0085;0.0085 0.0062;0.0058 0.0098;0.0055 0.0085" />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="34" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <filter id="smoke-warp-b" x="-12%" y="-12%" width="124%" height="124%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.0075 0.005" numOctaves="2" seed="11" result="n">
+            <animate attributeName="baseFrequency" dur="61s" repeatCount="indefinite" values="0.0075 0.005;0.005 0.0092;0.0092 0.0058;0.0075 0.005" />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="42" xChannelSelector="G" yChannelSelector="R" />
+        </filter>
+      </svg>
       <Image
         src="/images/hero-forest.jpg"
         alt=""
@@ -43,9 +58,16 @@ export default function Hero() {
         className="hero__rays hero__rays--2"
         aria-hidden
       />
+      <Image
+        src="/images/light-rays.png"
+        alt=""
+        width={1254}
+        height={1254}
+        className="hero__rays hero__rays--3"
+        aria-hidden
+      />
       <div className="mist mist--near" aria-hidden />
       <div className="hero__yantra">
-        <div className="yantra__aura" aria-hidden />
         <Image
           src="/images/yantra-glow-clean.png"
           alt=""
@@ -63,6 +85,7 @@ export default function Hero() {
           aria-hidden
         />
         <SriYantra />
+        <div className="yantra__light" aria-hidden />
       </div>
       <Particles />
       <HeroFX />
